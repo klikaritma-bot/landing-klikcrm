@@ -530,68 +530,46 @@
     </div>
 
     <script>
-        // Konfigurasi Affiliate Default (Pusat)
-        const GAS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbw_GANTI_DENGAN_URL_ASLI/exec"; 
-        let TARGET_WA_NUMBER = "6281328307335"; 
-        let AFFILIATE_NAME = "klikSistem Official";
-
-        // Logic Pelacakan Affiliate Senyap
+        // Tangkap parameter referal (Penting untuk Affiliate)
+        let currentRef = '';
+        
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
-            let currentRef = urlParams.get('ref');
+            currentRef = urlParams.get('ref');
             
-            if (!currentRef) { currentRef = localStorage.getItem('klikcrm_affiliate_ref'); } 
-            else { localStorage.setItem('klikcrm_affiliate_ref', currentRef); }
-
-            if (currentRef && currentRef !== 'admin') {
-                fetch(`${GAS_WEBAPP_URL}?action=getAffiliate&ref=${currentRef}`)
-                    .then(response => response.json())
-                    .then(res => {
-                        if (res.status === 'success' && res.data.wa) {
-                            TARGET_WA_NUMBER = res.data.wa;
-                            AFFILIATE_NAME = res.data.name;
-                            const statusText = document.getElementById('affiliateStatusText');
-                            if(statusText) statusText.innerHTML = `Mitra Resmi: <strong>${AFFILIATE_NAME}</strong>`;
-                        }
-                    }).catch(err => console.log("Affiliate fetch error. Using default WA."));
+            // Simpan di LocalStorage agar tidak hilang kalau user refresh page
+            if (!currentRef) { 
+                currentRef = localStorage.getItem('klikcrm_affiliate_ref') || ''; 
+            } else { 
+                localStorage.setItem('klikcrm_affiliate_ref', currentRef); 
             }
         });
 
-        // Kontrol Modal
-        function openOrderModal(paketDefault) {
-            const modal = document.getElementById('orderModal');
-            const content = document.getElementById('orderModalContent');
+        // FUNGSI BARU: Direct to Checkout (Tanpa Modal WA)
+        function openOrderModal(paketType) {
+            let productId = '';
             
-            if(paketDefault) document.getElementById('inputPaket').value = paketDefault;
+            // Tentukan ID Produk berdasarkan pilihan paket
+            // (Pastikan ID ini sama dengan ID Produk di database kliksistem.vercel.app)
+            if (paketType.includes('SaaS Tahunan') || paketType.includes('Rp149.000/Tahun')) {
+                productId = 'PRD-01'; // klikCRM End User
+            } else if (paketType.includes('Make a Copy')) {
+                productId = 'PRD-02'; // klikCRM PLR
+            } else if (paketType.includes('Bulanan')) {
+                productId = 'PRD-01-BULANAN'; // Jika ada (Opsional)
+            } else {
+                productId = 'PRD-01'; // Default Fallback
+            }
+
+            // Siapkan URL Checkout ke Web Utama
+            const refParam = currentRef ? `&ref=${currentRef}` : '';
+            const checkoutUrl = `https://kliksistem.vercel.app/?buy=${productId}${refParam}`;
             
-            modal.classList.remove('hidden'); modal.classList.add('flex');
-            setTimeout(() => { content.classList.remove('scale-95', 'opacity-0'); content.classList.add('scale-100', 'opacity-100'); }, 10);
-            
-            // Log Click (Silent)
-            let ref = localStorage.getItem('klikcrm_affiliate_ref') || 'admin';
-            fetch(`${GAS_WEBAPP_URL}?action=logClick&ref=${ref}`, { mode: 'no-cors' }).catch(()=>{});
+            // Arahkan browser langsung ke web kasir
+            window.location.href = checkoutUrl;
         }
 
-        function closeOrderModal() {
-            const modal = document.getElementById('orderModal');
-            const content = document.getElementById('orderModalContent');
-            
-            content.classList.remove('scale-100', 'opacity-100'); content.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); }, 300);
-        }
-
-        // Routing Pesanan
-        function sendToWhatsApp(event) {
-            event.preventDefault(); 
-            const nama = document.getElementById('inputNama').value;
-            const paket = document.getElementById('inputPaket').value;
-
-            let pesan = `Halo Kak ${AFFILIATE_NAME}, saya tertarik dengan *klikCRM Pro*.%0A%0A*Nama:* ${nama}%0A*Pilihan:* ${paket}%0A%0AMohon info cara aktivasinya ya.`;
-            const waUrl = `https://api.whatsapp.com/send?phone=${TARGET_WA_NUMBER}&text=${pesan}`;
-            
-            closeOrderModal();
-            window.open(waUrl, '_blank'); 
-        }
+        // Hapus fungsi closeOrderModal() dan sendToWhatsApp() karena tidak diperlukan lagi
     </script>
 </body>
 </html>
