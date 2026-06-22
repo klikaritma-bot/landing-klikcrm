@@ -49,7 +49,6 @@
                     <a href="#fitur" class="text-gray-600 hover:text-primary font-medium transition">Fitur Utama</a>
                     <a href="#harga" class="text-gray-600 hover:text-primary font-medium transition">Harga</a>
                     <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
-                    <a href="#peluang-bisnis" class="text-gray-600 hover:text-brand font-bold transition flex items-center gap-1"><i class="bi bi-star-fill text-brand"></i> Peluang Bisnis</a>
                     <button type="button" onclick="openOrderModal('SaaS - Rp149.000/Tahun')" class="bg-brand text-white px-6 py-2.5 rounded-full font-bold hover:brightness-110 transition shadow-lg shadow-orange-500/30">Ambil Promo</button>
                 </div>
             </div>
@@ -318,58 +317,33 @@
                 <p class="text-xl text-gray-600">Investasi kecil untuk menyelamatkan ratusan juta potensi closing Anda.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-center">
-                
-                <!-- Paket Bulanan -->
-                <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 flex flex-col h-full hover:shadow-xl transition duration-300">
-                    <div class="mb-6">
-                        <h3 class="text-2xl font-bold text-primary">Paket Bulanan</h3>
-                        <p class="text-gray-500 mt-2">Cocok untuk mencoba sistem</p>
-                    </div>
-                    <div class="mb-6 pb-6 border-b border-gray-100">
-                        <span class="text-4xl font-extrabold text-primary">Rp 99.000</span>
-                        <span class="text-gray-500"> / bln</span>
-                    </div>
-                    <ul class="space-y-4 mb-8 flex-1 text-gray-600">
-                        <li class="flex items-start"><i class="bi bi-check-circle-fill text-secondary mt-1 mr-3"></i> <span><strong>Unlimited Leads</strong> tanpa batas input</span></li>
-                        <li class="flex items-start"><i class="bi bi-check-circle-fill text-secondary mt-1 mr-3"></i> <span>Visual Sales Pipeline (Drag & Drop)</span></li>
-                        <li class="flex items-start"><i class="bi bi-check-circle-fill text-secondary mt-1 mr-3"></i> <span>Modul Project Management</span></li>
-                        <li class="flex items-start"><i class="bi bi-check-circle-fill text-secondary mt-1 mr-3"></i> <span>Support via WhatsApp</span></li>
-                    </ul>
-                    <button type="button" onclick="openOrderModal('SaaS - Rp99.000/Bulan')" class="w-full text-center border-2 border-primary text-primary font-bold py-4 rounded-xl hover:bg-primary hover:text-white transition">
-                        Pilih Paket Bulanan
-                    </button>
+            <!-- Paket Akses Penuh (PROMO 149rb) - Center Card -->
+            <div class="max-w-md mx-auto bg-primary rounded-3xl p-8 shadow-2xl relative border-4 border-brand flex flex-col z-10">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                    <span class="bg-brand text-white font-bold px-6 py-2 rounded-full text-xs md:text-sm uppercase tracking-wider shadow-lg">
+                        ⭐ Promo Spesial Terbatas
+                    </span>
                 </div>
-
-                <!-- Paket Tahunan (PROMO 149rb) -->
-                <div class="bg-primary rounded-3xl p-8 shadow-2xl relative border-4 border-brand flex flex-col h-full z-10 mt-8 md:mt-0">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-                        <span class="bg-brand text-white font-bold px-6 py-2 rounded-full text-xs md:text-sm uppercase tracking-wider shadow-lg">
-                            ⭐ Paling Laris & Hemat
-                        </span>
-                    </div>
-                    <div class="mb-6 mt-6 text-center">
-                        <h3 class="text-2xl font-bold text-white">Paket Tahunan</h3>
-                        <p class="text-gray-400 mt-2">Lisensi akses penuh selama 1 tahun</p>
-                    </div>
-                    <div class="mb-6 pb-6 border-b border-gray-700 text-center">
-                        <div class="text-gray-400 line-through text-xl mb-1">Rp 499.000</div>
-                        <div class="flex justify-center items-end gap-1">
-                            <span class="text-5xl font-extrabold text-brand">Rp 149.000</span>
-                            <span class="text-gray-400 mb-1">/ thn</span>
-                        </div>
-                    </div>
-                    <ul class="space-y-4 mb-8 flex-1 text-gray-300">
-                        <li class="flex items-start"><i class="bi bi-check-circle-fill text-brand mt-1 mr-3"></i> <span><strong>Semua Fitur Bulanan</strong></span></li>
-                        <li class="flex items-start"><i class="bi bi-check-circle-fill text-brand mt-1 mr-3"></i> <span>Export Data ke Excel (.xlsx)</span></li>
-                        <li class="flex items-start"><i class="bi bi-check-circle-fill text-brand mt-1 mr-3"></i> <span>Prioritas Support Langsung dari Tim Dev</span></li>
-                        <li class="flex items-start bg-white/10 p-4 rounded-xl border border-brand/30 mt-4"><i class="bi bi-star-fill text-brand mt-1 mr-3"></i> <span class="text-white font-bold">Promo Spesial Terbatas Bulan Ini!</span></li>
-                    </ul>
-                    <button type="button" onclick="openOrderModal('SaaS - Rp149.000/Tahun')" class="w-full text-center bg-brand text-white font-extrabold text-lg py-4 rounded-xl hover:brightness-110 transition shadow-lg shadow-orange-500/30">
-                        Ambil Promo Tahunan
-                    </button>
+                <div class="mb-6 mt-6 text-center">
+                    <h3 class="text-2xl font-bold text-white">Lisensi Akses Penuh</h3>
+                    <p class="text-gray-400 mt-2">Tanpa biaya langganan server bulanan</p>
                 </div>
-
+                <div class="mb-6 pb-6 border-b border-gray-700 text-center">
+                    <div class="text-gray-400 line-through text-xl mb-1">Rp 499.000</div>
+                    <div class="flex justify-center items-end gap-1">
+                        <span class="text-5xl font-extrabold text-brand">Rp 149.000</span>
+                    </div>
+                </div>
+                <ul class="space-y-4 mb-8 flex-1 text-gray-300">
+                    <li class="flex items-start"><i class="bi bi-check-circle-fill text-brand mt-1 mr-3"></i> <span><strong>Unlimited Leads</strong> tanpa batas input</span></li>
+                    <li class="flex items-start"><i class="bi bi-check-circle-fill text-brand mt-1 mr-3"></i> <span>Visual Sales Pipeline (Drag & Drop)</span></li>
+                    <li class="flex items-start"><i class="bi bi-check-circle-fill text-brand mt-1 mr-3"></i> <span>Modul Project Management</span></li>
+                    <li class="flex items-start"><i class="bi bi-check-circle-fill text-brand mt-1 mr-3"></i> <span>Export Data ke Excel (.xlsx)</span></li>
+                    <li class="flex items-start bg-white/10 p-4 rounded-xl border border-brand/30 mt-4"><i class="bi bi-star-fill text-brand mt-1 mr-3"></i> <span class="text-white font-bold">Harga flat, bayar sekali pakai sepuasnya!</span></li>
+                </ul>
+                <button type="button" onclick="openOrderModal('SaaS Tahunan')" class="w-full text-center bg-brand text-white font-extrabold text-lg py-4 rounded-xl hover:brightness-110 transition shadow-lg shadow-orange-500/30">
+                    Ambil Promo Sekarang
+                </button>
             </div>
         </div>
     </section>
